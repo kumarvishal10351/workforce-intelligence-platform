@@ -1,0 +1,91 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyo
+*.pyd
+*.pyc
+*.pdb
+*.pyt
+*.pyi
+
+# Virtual environments
+.venv/
+venv/
+ENV/
+env/
+venv.bak/
+venv_old/
+
+# Distribution / packaging
+build/
+dist/
+*.egg-info/
+.eggs/
+*.egg
+
+# Installer logs
+pip-log.txt
+pip-delete-this-directory.txt
+
+# Unit test / coverage reports
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+.hypothesis/
+.pytest_cache/
+
+# Jupyter Notebook checkpoints
+.ipynb_checkpoints
+
+# Environment variables
+.env
+.env.*
+
+# PyCharm
+.idea/
+*.iml
+
+# VS Code
+.vscode/
+.history/
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+desktop.ini
+
+# Logs
+*.log
+logs/
+
+# Data
+data/raw/
+data/external/
+
+# Ignore generated files
+*.sqlite3
+*.db
+
+# Local config
+local_settings.py
+
+# Ignore backend and frontend build artifacts
+backend/__pycache__/
+frontend/build/
+
+# Ignore secrets
+secret*
+credentials/
+
+# Ignore notebook outputs
+*.nbconvert.ipynb
+
+# Misc
+*.swp
+*~
