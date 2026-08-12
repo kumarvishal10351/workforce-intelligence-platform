@@ -1,21 +1,34 @@
 # Python
 __pycache__/
+**/__pycache__/
 *.py[cod]
 *$py.class
 *.pyo
 *.pyd
 *.pyc
-*.pdb
-*.pyt
-*.pyi
 
-# Virtual environments
+# Virtual Environments
 .venv/
 venv/
+**/ .venv/
+**/venv/
 ENV/
 env/
-venv.bak/
-venv_old/
+
+# Node.js & Frontend
+node_modules/
+**/node_modules/
+frontend/dist/
+frontend/build/
+.npm
+*.log
+
+# Environment variables & secrets
+.env
+.env.*
+!.env.example
+secret*
+credentials/
 
 # Distribution / packaging
 build/
@@ -24,68 +37,26 @@ dist/
 .eggs/
 *.egg
 
-# Installer logs
-pip-log.txt
-pip-delete-this-directory.txt
-
-# Unit test / coverage reports
+# Testing & Coverage
 .coverage
 .coverage.*
-.cache
-nosetests.xml
-coverage.xml
-*.cover
-.hypothesis/
 .pytest_cache/
+.cache
 
-# Jupyter Notebook checkpoints
-.ipynb_checkpoints
-
-# Environment variables
-.env
-.env.*
-
-# PyCharm
-.idea/
-*.iml
-
-# VS Code
+# IDE & OS
 .vscode/
+.idea/
 .history/
-
-# macOS
 .DS_Store
-
-# Windows
 Thumbs.db
 desktop.ini
 
-# Logs
-*.log
+# Uploaded raw files & logs
+data/raw/*
+!data/raw/.gitkeep
 logs/
+*.log
 
-# Data
-data/raw/
-data/external/
-
-# Ignore generated files
+# Database
 *.sqlite3
 *.db
-
-# Local config
-local_settings.py
-
-# Ignore backend and frontend build artifacts
-backend/__pycache__/
-frontend/build/
-
-# Ignore secrets
-secret*
-credentials/
-
-# Ignore notebook outputs
-*.nbconvert.ipynb
-
-# Misc
-*.swp
-*~
