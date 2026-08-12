@@ -27,31 +27,40 @@ function simulateSinglePrediction(employeeData) {
   const exp = Number(employeeData.ExperienceInCurrentDomain) || 3;
   const benched = String(employeeData.EverBenched).toLowerCase() === "yes";
   const joiningYear = Number(employeeData.JoiningYear) || 2018;
-  const tenure = 2026 - joiningYear;
+  const tenure = Math.max(0, 2026 - joiningYear);
 
-  // Calculate weighted risk score
-  let score = 0.25;
-  if (tier === 3) score += 0.28;
-  if (tier === 2) score += 0.12;
-  if (benched) score += 0.22;
-  if (tenure > 5) score += 0.15;
-  if (exp < 3) score += 0.10;
-  if (age < 28) score += 0.08;
+  // Balanced fallback score (calibrated closer to real ML model distribution)
+  let score = 0.12;
 
-  score = Math.min(Math.max(score, 0.05), 0.95);
+  // Major risk factors identified by feature importance
+  if (tier === 3) score += 0.22;
+  else if (tier === 2) score += 0.08;
+
+  if (benched) score += 0.25;
+
+  // Domain experience & age factors
+  if (exp < 2) score += 0.12;
+  else if (exp >= 5) score -= 0.08;
+
+  if (age < 26) score += 0.08;
+
+  // Tenure effect
+  if (joiningYear === 2018 || tenure <= 2) score += 0.10;
+
+  score = Math.min(Math.max(score, 0.04), 0.95);
 
   let risk_level = "Low";
-  if (score > 0.6) risk_level = "High";
-  else if (score > 0.3) risk_level = "Medium";
+  if (score > 0.60) risk_level = "High";
+  else if (score > 0.30) risk_level = "Medium";
 
   const recommendations = [];
   if (tier === 3)
     recommendations.push("Schedule compensation review — Tier 3 payment band discrepancy");
   if (benched)
     recommendations.push("Assign active project role — Reduce bench stagnation risk");
-  if (tenure >= 5)
-    recommendations.push("Career progression mapping — Address tenure retention milestone");
-  if (exp < 3)
+  if (joiningYear === 2018 || tenure <= 2)
+    recommendations.push("Career progression mapping — Address early-tenure retention milestone");
+  if (exp < 2)
     recommendations.push("Assign Senior Mentor — Accelerate domain onboarding");
 
   if (recommendations.length === 0) {
