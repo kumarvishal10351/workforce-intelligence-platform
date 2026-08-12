@@ -10,7 +10,7 @@ Project: Workforce Intelligence Platform
 from fastapi import FastAPI
 from fastapi.middleware.cors import CORSMiddleware
 
-from app.core.config import ALLOWED_ORIGINS, API_V1_PREFIX
+from app.core.config import API_V1_PREFIX
 from app.api.v1.health import router as health_router
 from app.api.v1.predictions import router as predictions_router
 from app.api.v1.uploads import router as uploads_router
@@ -27,10 +27,10 @@ app = FastAPI(
     version="1.0.0",
 )
 
-# CORS
+# Permissive CORS for development & deployment (supports localhost, 127.0.0.1, Vercel, Render)
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=ALLOWED_ORIGINS,
+    allow_origin_regex=".*",
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],

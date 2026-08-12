@@ -30,6 +30,9 @@ frontend/build/
 secret*
 credentials/
 
+# Personal Study & Interview Notes (Do Not Push)
+WORKFORCE_INTELLIGENCE_PLATFORM_INTERVIEW_PREP.md
+
 # Distribution / packaging
 build/
 dist/
