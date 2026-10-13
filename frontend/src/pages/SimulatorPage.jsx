@@ -51,9 +51,9 @@ export default function SimulatorPage() {
 
   return (
     <div className="flex flex-col gap-4 fade-in">
-      <div className="flex justify-between items-center">
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
-          <h1 className="text-xl font-bold text-on-surface">
+          <h1 className="text-lg sm:text-xl font-bold text-on-surface">
             Retention Simulator
           </h1>
           <p className="text-xs text-on-surface-variant mt-0.5">
@@ -62,21 +62,21 @@ export default function SimulatorPage() {
         </div>
         <button
           onClick={resetToBaseline}
-          className="border border-outline-variant text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-2.5 py-1 rounded text-xs transition-colors flex items-center gap-1 font-semibold"
+          className="self-start sm:self-auto border border-outline-variant text-on-surface-variant hover:text-on-surface hover:bg-surface-container-high px-2.5 py-1.5 rounded text-xs transition-colors flex items-center gap-1 font-semibold"
         >
           <span className="material-symbols-outlined text-xs">restart_alt</span>
-          Reset
+          Reset to Baseline
         </button>
       </div>
 
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
         {/* Levers Panel */}
-        <div className="bg-surface-container-low border border-outline-variant p-4 rounded-lg">
+        <div className="bg-surface-container-low border border-outline-variant p-3.5 sm:p-4 rounded-lg">
           <h3 className="text-sm font-semibold text-on-surface mb-3 pb-2 border-b border-outline-variant">
             Retention Levers
           </h3>
 
-          <div className="space-y-3 text-xs">
+          <div className="space-y-3.5 text-xs">
             <div>
               <div className="flex justify-between text-on-surface mb-1 font-medium">
                 <span>Compensation Level</span>
@@ -85,7 +85,7 @@ export default function SimulatorPage() {
               <select
                 value={form.PaymentTier}
                 onChange={(e) => handleChange("PaymentTier", parseInt(e.target.value))}
-                className="w-full bg-surface-container border border-outline-variant rounded p-1.5 text-on-surface"
+                className="w-full bg-surface-container border border-outline-variant rounded p-2 text-on-surface focus:outline-none focus:border-primary"
               >
                 <option value={1}>Tier 1 (Highest)</option>
                 <option value={2}>Tier 2 (Mid-Level)</option>
@@ -101,7 +101,7 @@ export default function SimulatorPage() {
               <select
                 value={form.EverBenched}
                 onChange={(e) => handleChange("EverBenched", e.target.value)}
-                className="w-full bg-surface-container border border-outline-variant rounded p-1.5 text-on-surface"
+                className="w-full bg-surface-container border border-outline-variant rounded p-2 text-on-surface focus:outline-none focus:border-primary"
               >
                 <option value="No">Assigned Active Project (No Bench)</option>
                 <option value="Yes">Unassigned / On Bench (Yes)</option>
@@ -119,7 +119,7 @@ export default function SimulatorPage() {
                 max={2024}
                 value={form.JoiningYear}
                 onChange={(e) => handleChange("JoiningYear", parseInt(e.target.value))}
-                className="w-full accent-primary"
+                className="w-full accent-primary py-2 cursor-pointer h-6"
               />
             </div>
 
@@ -134,26 +134,26 @@ export default function SimulatorPage() {
                 max={15}
                 value={form.ExperienceInCurrentDomain}
                 onChange={(e) => handleChange("ExperienceInCurrentDomain", parseInt(e.target.value))}
-                className="w-full accent-primary"
+                className="w-full accent-primary py-2 cursor-pointer h-6"
               />
             </div>
           </div>
         </div>
 
         {/* Live Outcome Panel */}
-        <div className="bg-surface-container-low border border-outline-variant p-4 rounded-lg">
+        <div className="bg-surface-container-low border border-outline-variant p-3.5 sm:p-4 rounded-lg">
           <h3 className="text-sm font-semibold text-on-surface mb-3 pb-2 border-b border-outline-variant">
             Simulation Telemetry
           </h3>
 
           {simulatedRisk && (
             <div className="space-y-3 text-xs">
-              <div className="grid grid-cols-2 gap-3 bg-surface-container p-3 rounded border border-outline-variant">
+              <div className="grid grid-cols-2 gap-2.5 sm:gap-3 bg-surface-container p-3 rounded border border-outline-variant">
                 <div>
                   <span className="text-[11px] font-bold text-on-surface-variant uppercase block">
                     Baseline Risk
                   </span>
-                  <span className="font-mono text-xl font-bold text-on-surface-variant">
+                  <span className="font-mono text-lg sm:text-xl font-bold text-on-surface-variant">
                     {baselineRisk ? (baselineRisk.risk_probability * 100).toFixed(1) : "---"}%
                   </span>
                 </div>
@@ -161,7 +161,7 @@ export default function SimulatorPage() {
                   <span className="text-[11px] font-bold text-on-surface-variant uppercase block">
                     Simulated Risk
                   </span>
-                  <span className="font-mono text-2xl font-bold text-red-400">
+                  <span className="font-mono text-xl sm:text-2xl font-bold text-red-400">
                     {(simulatedRisk.risk_probability * 100).toFixed(1)}%
                   </span>
                 </div>
@@ -177,7 +177,7 @@ export default function SimulatorPage() {
                     : "bg-surface-container text-on-surface-variant border-outline-variant"
                 }`}
               >
-                <span className="material-symbols-outlined text-sm">
+                <span className="material-symbols-outlined text-sm flex-shrink-0">
                   {riskDelta < 0 ? "trending_down" : riskDelta > 0 ? "trending_up" : "flatline"}
                 </span>
                 <span>
@@ -199,8 +199,8 @@ export default function SimulatorPage() {
                     key={i}
                     className="bg-surface-container p-2 rounded text-on-surface flex items-center gap-2"
                   >
-                    <span className="material-symbols-outlined text-primary text-sm">bolt</span>
-                    <span>{rec}</span>
+                    <span className="material-symbols-outlined text-primary text-sm flex-shrink-0">bolt</span>
+                    <span className="text-xs">{rec}</span>
                   </div>
                 ))}
               </div>

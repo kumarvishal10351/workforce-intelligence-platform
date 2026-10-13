@@ -77,9 +77,9 @@ export default function UploadPage() {
   };
 
   return (
-    <div className="flex flex-col gap-5 fade-in">
+    <div className="flex flex-col gap-4 sm:gap-5 fade-in">
       <div>
-        <h1 className="text-xl font-bold text-on-surface">
+        <h1 className="text-lg sm:text-xl font-bold text-on-surface">
           Ingestion Workbench
         </h1>
         <p className="text-xs text-on-surface-variant mt-0.5">
@@ -87,50 +87,50 @@ export default function UploadPage() {
         </p>
       </div>
 
-      {/* Stepper */}
-      <div className="bg-surface-container-low border border-outline-variant p-3 rounded-lg">
-        <div className="flex items-center justify-between text-xs">
-          <div className="flex items-center gap-2">
-            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+      {/* Stepper (Responsive with compact mobile view) */}
+      <div className="bg-surface-container-low border border-outline-variant p-2.5 sm:p-3 rounded-lg overflow-x-auto">
+        <div className="flex items-center justify-between text-xs min-w-[280px] gap-1 sm:gap-2">
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${
               status === "validating" ? "bg-primary text-on-primary animate-pulse" : "bg-primary-container text-on-primary-container"
             }`}>1</span>
-            <span className="font-semibold text-on-surface">File Check</span>
+            <span className="font-semibold text-on-surface text-[11px] sm:text-xs whitespace-nowrap">File Check</span>
           </div>
-          <span className="h-0.5 w-8 bg-outline-variant"></span>
-          <div className="flex items-center gap-2">
-            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+          <span className="h-0.5 w-4 sm:w-8 bg-outline-variant flex-shrink-0"></span>
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${
               status === "validating" ? "bg-primary text-on-primary animate-pulse" : "bg-primary-container text-on-primary-container"
             }`}>2</span>
-            <span className="font-semibold text-on-surface">Schema &amp; Types</span>
+            <span className="font-semibold text-on-surface text-[11px] sm:text-xs whitespace-nowrap">Schema &amp; Types</span>
           </div>
-          <span className="h-0.5 w-8 bg-outline-variant"></span>
-          <div className="flex items-center gap-2">
-            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold ${
+          <span className="h-0.5 w-4 sm:w-8 bg-outline-variant flex-shrink-0"></span>
+          <div className="flex items-center gap-1.5 sm:gap-2">
+            <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] font-bold flex-shrink-0 ${
               status === "predicting" ? "bg-primary text-on-primary animate-pulse" : "bg-surface-container-high text-on-surface-variant"
             }`}>3</span>
-            <span className="font-semibold text-on-surface-variant">ML Prediction</span>
+            <span className="font-semibold text-on-surface-variant text-[11px] sm:text-xs whitespace-nowrap">ML Prediction</span>
           </div>
         </div>
       </div>
 
       {/* Upload Zone */}
-      <div className="bg-surface-container-low border border-outline-variant rounded-lg p-5">
+      <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3.5 sm:p-5">
         <div
           {...getRootProps()}
-          className={`border-2 border-dashed rounded-lg p-8 text-center cursor-pointer transition-all ${
+          className={`border-2 border-dashed rounded-lg p-6 sm:p-8 text-center cursor-pointer transition-all active:scale-[0.99] ${
             isDragActive
               ? "border-primary bg-surface-container-high"
               : "border-outline-variant hover:border-primary hover:bg-surface-container"
           }`}
         >
           <input {...getInputProps()} />
-          <span className="material-symbols-outlined text-3xl text-primary mb-2">
+          <span className="material-symbols-outlined text-3xl sm:text-4xl text-primary mb-2">
             cloud_upload
           </span>
-          <h3 className="text-sm font-semibold text-on-surface mb-0.5">
-            {file ? file.name : "Drag & Drop Employee CSV"}
+          <h3 className="text-xs sm:text-sm font-semibold text-on-surface mb-0.5">
+            {file ? file.name : "Tap to browse or Drop Employee CSV"}
           </h3>
-          <p className="text-xs text-on-surface-variant">
+          <p className="text-[11px] sm:text-xs text-on-surface-variant">
             {file
               ? `${(file.size / 1024).toFixed(1)} KB`
               : "Supports .csv employee datasets"}
@@ -142,7 +142,7 @@ export default function UploadPage() {
             <button
               onClick={handleUploadAndPredict}
               disabled={status === "validating" || status === "predicting"}
-              className="bg-primary text-on-primary px-4 py-2 rounded text-xs font-bold hover:bg-primary-fixed transition-colors flex items-center gap-1.5"
+              className="w-full sm:w-auto bg-primary text-on-primary px-4 py-2.5 rounded text-xs font-bold hover:bg-primary-fixed transition-colors flex items-center justify-center gap-1.5 shadow-sm"
             >
               {status === "validating" && (
                 <>
@@ -170,7 +170,7 @@ export default function UploadPage() {
       {/* Validation Result */}
       {validation && (
         <div
-          className={`p-3.5 rounded-lg border text-xs ${
+          className={`p-3 sm:p-3.5 rounded-lg border text-xs break-words ${
             validation.is_valid
               ? "bg-primary-container/20 border-primary/30 text-primary"
               : "bg-error-container/20 border-error/30 text-error"
@@ -197,8 +197,8 @@ export default function UploadPage() {
       )}
 
       {error && !validation && (
-        <div className="p-3.5 rounded-lg bg-error-container/20 border border-error/30 text-error flex items-center gap-1.5 text-xs">
-          <span className="material-symbols-outlined text-sm">error</span>
+        <div className="p-3 sm:p-3.5 rounded-lg bg-error-container/20 border border-error/30 text-error flex items-center gap-1.5 text-xs break-words">
+          <span className="material-symbols-outlined text-sm flex-shrink-0">error</span>
           <span>{error}</span>
         </div>
       )}

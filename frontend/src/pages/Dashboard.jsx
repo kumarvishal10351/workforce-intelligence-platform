@@ -60,11 +60,11 @@ export default function Dashboard() {
       .slice(0, 5) || [];
 
   return (
-    <div className="flex flex-col gap-5 fade-in">
-      {/* Page Header (single Upload CSV button in top navbar) */}
-      <div className="flex justify-between items-center">
+    <div className="flex flex-col gap-4 sm:gap-5 fade-in">
+      {/* Page Header */}
+      <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
         <div>
-          <h1 className="text-xl font-bold text-on-surface">
+          <h1 className="text-lg sm:text-xl font-bold text-on-surface">
             Executive Overview
           </h1>
           <p className="text-xs text-on-surface-variant mt-0.5">
@@ -75,60 +75,60 @@ export default function Dashboard() {
         </div>
       </div>
 
-      {/* KPI Metric Cards */}
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-        <div className="bg-surface-container-low border border-outline-variant p-4 rounded-lg">
+      {/* KPI Metric Cards (2 cols on mobile, 4 on desktop) */}
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-2.5 sm:gap-4">
+        <div className="bg-surface-container-low border border-outline-variant p-3 sm:p-4 rounded-lg">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-xs font-bold text-on-surface-variant uppercase tracking-wider">
+            <span className="text-[11px] sm:text-xs font-bold text-on-surface-variant uppercase tracking-wider truncate">
               Total Tracked
             </span>
             <span className="material-symbols-outlined text-on-surface-variant text-base">
               groups
             </span>
           </div>
-          <div className="font-mono text-2xl font-bold text-on-surface">
+          <div className="font-mono text-xl sm:text-2xl font-bold text-on-surface">
             {data?.total_employees ?? 0}
           </div>
         </div>
 
-        <div className="bg-surface-container-low border border-outline-variant p-4 rounded-lg">
+        <div className="bg-surface-container-low border border-outline-variant p-3 sm:p-4 rounded-lg">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-xs font-bold text-error uppercase tracking-wider">
+            <span className="text-[11px] sm:text-xs font-bold text-error uppercase tracking-wider truncate">
               High Risk
             </span>
             <span className="material-symbols-outlined text-error text-base">
               warning
             </span>
           </div>
-          <div className="font-mono text-2xl font-bold text-error">
+          <div className="font-mono text-xl sm:text-2xl font-bold text-error">
             {data?.high_risk_count ?? 0}
           </div>
         </div>
 
-        <div className="bg-surface-container-low border border-outline-variant p-4 rounded-lg">
+        <div className="bg-surface-container-low border border-outline-variant p-3 sm:p-4 rounded-lg">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-xs font-bold text-tertiary uppercase tracking-wider">
+            <span className="text-[11px] sm:text-xs font-bold text-tertiary uppercase tracking-wider truncate">
               Medium Risk
             </span>
             <span className="material-symbols-outlined text-tertiary text-base">
               notification_important
             </span>
           </div>
-          <div className="font-mono text-2xl font-bold text-tertiary">
+          <div className="font-mono text-xl sm:text-2xl font-bold text-tertiary">
             {data?.medium_risk_count ?? 0}
           </div>
         </div>
 
-        <div className="bg-surface-container-low border border-outline-variant p-4 rounded-lg">
+        <div className="bg-surface-container-low border border-outline-variant p-3 sm:p-4 rounded-lg">
           <div className="flex justify-between items-center mb-1">
-            <span className="text-xs font-bold text-primary uppercase tracking-wider">
+            <span className="text-[11px] sm:text-xs font-bold text-primary uppercase tracking-wider truncate">
               Low Risk
             </span>
             <span className="material-symbols-outlined text-primary text-base">
               verified
             </span>
           </div>
-          <div className="font-mono text-2xl font-bold text-primary">
+          <div className="font-mono text-xl sm:text-2xl font-bold text-primary">
             {data?.low_risk_count ?? 0}
           </div>
         </div>
@@ -138,19 +138,19 @@ export default function Dashboard() {
       {data ? (
         <>
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-4">
-            <div className="bg-surface-container-low border border-outline-variant rounded-lg p-4">
+            <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3.5 sm:p-4 min-w-0">
               <h3 className="text-sm font-semibold text-on-surface mb-3">
                 Risk Distribution
               </h3>
-              <div className="h-56 w-full">
+              <div className="h-48 sm:h-56 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <PieChart>
                     <Pie
                       data={pieData}
                       cx="50%"
                       cy="50%"
-                      innerRadius={55}
-                      outerRadius={85}
+                      innerRadius={48}
+                      outerRadius={75}
                       paddingAngle={3}
                       dataKey="value"
                       stroke="#10141a"
@@ -174,11 +174,11 @@ export default function Dashboard() {
               </div>
             </div>
 
-            <div className="bg-surface-container-low border border-outline-variant rounded-lg p-4">
+            <div className="bg-surface-container-low border border-outline-variant rounded-lg p-3.5 sm:p-4 min-w-0">
               <h3 className="text-sm font-semibold text-on-surface mb-3">
                 Risk Breakdown
               </h3>
-              <div className="h-56 w-full">
+              <div className="h-48 sm:h-56 w-full">
                 <ResponsiveContainer width="100%" height="100%">
                   <BarChart data={barData}>
                     <CartesianGrid strokeDasharray="3 3" stroke="#3d4947" />
@@ -204,50 +204,57 @@ export default function Dashboard() {
 
           {/* High Priority Action List */}
           <div className="bg-surface-container-low border border-outline-variant rounded-lg overflow-hidden">
-            <div className="p-3.5 border-b border-outline-variant flex justify-between items-center">
-              <h3 className="text-sm font-semibold text-on-surface flex items-center gap-2">
+            <div className="p-3 sm:p-3.5 border-b border-outline-variant flex flex-wrap justify-between items-center gap-2">
+              <div className="flex items-center gap-2">
                 <span className="material-symbols-outlined text-error text-base">priority_high</span>
-                Highest Risk Employees
-              </h3>
-              <Link
-                to="/results"
-                className="text-xs text-primary hover:underline flex items-center gap-1 font-semibold"
-              >
-                View Registry →
-              </Link>
+                <h3 className="text-xs sm:text-sm font-semibold text-on-surface">
+                  Highest Risk Employees
+                </h3>
+              </div>
+              <div className="flex items-center gap-3">
+                <span className="text-[11px] text-on-surface-variant sm:hidden flex items-center gap-0.5">
+                  <span className="material-symbols-outlined text-xs">swipe</span> Swipe
+                </span>
+                <Link
+                  to="/results"
+                  className="text-xs text-primary hover:underline flex items-center gap-1 font-semibold"
+                >
+                  View All →
+                </Link>
+              </div>
             </div>
             <div className="overflow-x-auto">
-              <table className="w-full text-left text-xs border-collapse">
+              <table className="w-full text-left text-xs border-collapse min-w-[520px]">
                 <thead>
                   <tr className="bg-surface-container text-on-surface-variant border-b border-outline-variant uppercase text-[11px] font-bold tracking-wider">
-                    <th className="p-3">Employee ID</th>
-                    <th className="p-3">Risk Level</th>
-                    <th className="p-3">Probability</th>
-                    <th className="p-3">Recommendation</th>
-                    <th className="p-3 text-right">Action</th>
+                    <th className="p-2.5 sm:p-3">Employee ID</th>
+                    <th className="p-2.5 sm:p-3">Risk Level</th>
+                    <th className="p-2.5 sm:p-3">Probability</th>
+                    <th className="p-2.5 sm:p-3">Recommendation</th>
+                    <th className="p-2.5 sm:p-3 text-right">Action</th>
                   </tr>
                 </thead>
                 <tbody className="divide-y divide-outline-variant">
                   {topRisk.map((emp) => (
                     <tr key={emp.index} className="hover:bg-surface-container-high transition-colors">
-                      <td className="p-3 font-mono font-bold text-on-surface">
+                      <td className="p-2.5 sm:p-3 font-mono font-bold text-on-surface">
                         EMP-{String(emp.index + 8400).padStart(4, "0")}
                       </td>
-                      <td className="p-3">
+                      <td className="p-2.5 sm:p-3">
                         <RiskBadge level={emp.risk_level} />
                       </td>
-                      <td className="p-3 font-mono font-bold text-red-400">
+                      <td className="p-2.5 sm:p-3 font-mono font-bold text-red-400">
                         {(emp.risk_probability * 100).toFixed(1)}%
                       </td>
-                      <td className="p-3 text-on-surface-variant max-w-xs truncate">
+                      <td className="p-2.5 sm:p-3 text-on-surface-variant max-w-xs truncate">
                         {emp.recommendations?.[0] || "Schedule check-in"}
                       </td>
-                      <td className="p-3 text-right">
+                      <td className="p-2.5 sm:p-3 text-right">
                         <Link
                           to={`/employee/${emp.index}`}
-                          className="bg-surface-container-high hover:bg-surface-variant text-on-surface px-2.5 py-1 rounded text-xs transition-colors inline-flex items-center gap-1 font-medium border border-outline-variant"
+                          className="bg-surface-container-high hover:bg-surface-variant text-on-surface px-2.5 py-1 rounded text-xs transition-colors inline-flex items-center gap-1 font-medium border border-outline-variant whitespace-nowrap"
                         >
-                          View Details
+                          Details
                         </Link>
                       </td>
                     </tr>

@@ -41,34 +41,34 @@ export default function PredictPage() {
   };
 
   return (
-    <div className="flex flex-col gap-component-gap-md fade-in">
-      <div className="flex justify-between items-end mb-2">
+    <div className="flex flex-col gap-4 sm:gap-component-gap-md fade-in">
+      <div className="flex justify-between items-end">
         <div>
-          <h1 className="font-headline-lg text-headline-lg text-on-surface font-bold">
+          <h1 className="text-lg sm:text-headline-lg text-on-surface font-bold">
             Single Employee Risk Inference
           </h1>
-          <p className="font-body-sm text-body-sm text-on-surface-variant mt-1">
+          <p className="text-xs sm:text-body-sm text-on-surface-variant mt-0.5 sm:mt-1">
             Manual feature entry for real-time model scoring.
           </p>
         </div>
       </div>
 
-      <div className="grid grid-cols-1 lg:grid-cols-2 gap-component-gap-md">
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-component-gap-md">
         {/* Form */}
-        <div className="bg-surface-container-low border border-outline-variant p-5 rounded-DEFAULT">
-          <h3 className="font-headline-md text-headline-md font-semibold text-on-surface mb-4 pb-2 border-b border-outline-variant">
+        <div className="bg-surface-container-low border border-outline-variant p-4 sm:p-5 rounded-DEFAULT">
+          <h3 className="text-sm sm:text-headline-md font-semibold text-on-surface mb-3 sm:mb-4 pb-2 border-b border-outline-variant">
             Employee Telemetry Input
           </h3>
           <form onSubmit={handleSubmit} className="space-y-4 font-body-sm">
-            <div className="grid grid-cols-2 gap-4">
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
               <div>
-                <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">
+                <label className="text-[11px] sm:text-label-caps text-on-surface-variant block mb-1 font-semibold uppercase">
                   Education
                 </label>
                 <select
                   value={form.Education}
                   onChange={(e) => update("Education", e.target.value)}
-                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-on-surface"
+                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-sm text-on-surface focus:outline-none focus:border-primary"
                 >
                   <option>Bachelors</option>
                   <option>Masters</option>
@@ -77,13 +77,13 @@ export default function PredictPage() {
               </div>
 
               <div>
-                <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">
+                <label className="text-[11px] sm:text-label-caps text-on-surface-variant block mb-1 font-semibold uppercase">
                   City Location
                 </label>
                 <select
                   value={form.City}
                   onChange={(e) => update("City", e.target.value)}
-                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-on-surface"
+                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-sm text-on-surface focus:outline-none focus:border-primary"
                 >
                   <option>Bangalore</option>
                   <option>New Delhi</option>
@@ -92,13 +92,13 @@ export default function PredictPage() {
               </div>
 
               <div>
-                <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">
+                <label className="text-[11px] sm:text-label-caps text-on-surface-variant block mb-1 font-semibold uppercase">
                   Gender
                 </label>
                 <select
                   value={form.Gender}
                   onChange={(e) => update("Gender", e.target.value)}
-                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-on-surface"
+                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-sm text-on-surface focus:outline-none focus:border-primary"
                 >
                   <option>Male</option>
                   <option>Female</option>
@@ -106,13 +106,13 @@ export default function PredictPage() {
               </div>
 
               <div>
-                <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">
+                <label className="text-[11px] sm:text-label-caps text-on-surface-variant block mb-1 font-semibold uppercase">
                   Bench Status
                 </label>
                 <select
                   value={form.EverBenched}
                   onChange={(e) => update("EverBenched", e.target.value)}
-                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-on-surface"
+                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-sm text-on-surface focus:outline-none focus:border-primary"
                 >
                   <option>Yes</option>
                   <option>No</option>
@@ -120,7 +120,7 @@ export default function PredictPage() {
               </div>
 
               <div>
-                <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">
+                <label className="text-[11px] sm:text-label-caps text-on-surface-variant block mb-1 font-semibold uppercase">
                   Age (18-70)
                 </label>
                 <input
@@ -129,12 +129,12 @@ export default function PredictPage() {
                   max={70}
                   value={form.Age}
                   onChange={(e) => update("Age", parseInt(e.target.value) || 0)}
-                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-on-surface"
+                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-sm text-on-surface focus:outline-none focus:border-primary"
                 />
               </div>
 
               <div>
-                <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">
+                <label className="text-[11px] sm:text-label-caps text-on-surface-variant block mb-1 font-semibold uppercase">
                   Joining Year
                 </label>
                 <input
@@ -143,18 +143,18 @@ export default function PredictPage() {
                   max={2030}
                   value={form.JoiningYear}
                   onChange={(e) => update("JoiningYear", parseInt(e.target.value) || 0)}
-                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-on-surface"
+                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-sm text-on-surface focus:outline-none focus:border-primary"
                 />
               </div>
 
               <div>
-                <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">
+                <label className="text-[11px] sm:text-label-caps text-on-surface-variant block mb-1 font-semibold uppercase">
                   Payment Tier (1-3)
                 </label>
                 <select
                   value={form.PaymentTier}
                   onChange={(e) => update("PaymentTier", parseInt(e.target.value))}
-                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-on-surface"
+                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-sm text-on-surface focus:outline-none focus:border-primary"
                 >
                   <option value={1}>Tier 1</option>
                   <option value={2}>Tier 2</option>
@@ -163,7 +163,7 @@ export default function PredictPage() {
               </div>
 
               <div>
-                <label className="font-label-caps text-label-caps text-on-surface-variant block mb-1">
+                <label className="text-[11px] sm:text-label-caps text-on-surface-variant block mb-1 font-semibold uppercase">
                   Domain Experience (yrs)
                 </label>
                 <input
@@ -172,7 +172,7 @@ export default function PredictPage() {
                   max={40}
                   value={form.ExperienceInCurrentDomain}
                   onChange={(e) => update("ExperienceInCurrentDomain", parseInt(e.target.value) || 0)}
-                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-on-surface"
+                  className="w-full bg-surface-container border border-outline-variant rounded-DEFAULT p-2 text-sm text-on-surface focus:outline-none focus:border-primary"
                 />
               </div>
             </div>
@@ -180,7 +180,7 @@ export default function PredictPage() {
             <button
               type="submit"
               disabled={loading}
-              className="w-full bg-primary text-on-primary py-2.5 rounded-DEFAULT font-label-caps text-label-caps font-bold hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2"
+              className="w-full bg-primary text-on-primary py-2.5 rounded-DEFAULT font-label-caps text-xs font-bold hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2 min-h-[44px] shadow-sm"
             >
               {loading ? (
                 <>
